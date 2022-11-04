@@ -1,0 +1,49 @@
+Note :-
+Please prepare the answer of these questions in brief :- (in
+your own words)
+
+1. What is the need of IAM?
+=> Basically when we create an AWS account we only have root user which has the access to all the available AWs resources with 
+   no limitations, we usually call root user as GOD user because he can do anything in the aws account.
+   So if the root user credentials are compromised then it may lead to big problems like the person which got the root user access
+   can spin up many machines which may lead to huge billings also  he can destroy existing resources by doing so our application will
+   not be stable and many more problems which we can not think of.
+   So to avoid these kind of problems we need to create the users with some set of permissions so that we can limit their access
+   to the AWS resources, we can acheive this using the AWS IAM service.
+
+
+
+2. If i am a non tech person, how will you define policies in IAM.
+=> So we can create the policies from IAM dashboard, where we just need to select the service, actions, resources and the conditions from the
+   available drop down options, so no technical knowledge is required but he must be aware of the AWS services for which he wants to create 
+   the policies.
+
+
+
+3. Please define a scenerio in which you would like to create your on own IAM policy.
+=> We go with the customer managed policies so that we can have more control over those policies, suppose I have been using a AWS managed
+   Policy i.e EC2FullAccess and attached it to some user, now the problem here is, user has full access to the EC2 resource so he can spin up 
+   as many machines as he wants also there is no restriction on the type of EC2 machines so he can spin large machines as well.
+   So in this scenario to limit the access within the EC2  resource I can create my own policy in which I will add some conditions like user can only
+   spin up t2.micro machines only so that the user won't be able to spin up big machines.
+   
+
+4. Why do we prefer not using root account?
+=> We refere root user as GOD user i.e GOD can do anything likewise root user can do anything in AWS account as it has the access to all available 
+   AWS resources, So if the root user credentials are compromised it may lead to some big problems so to avoid such problems its advisable not to use 
+   root user for every opertion that we want to execute within the AWS, yes for some operations we must use root user. 
+
+
+5. How to revoke policy for an IAM user?
+=> We can revoke the IAM user policies with the help of root user, simply we can got to that user from the IAM dashboard where we can find the attached 
+   policies to it, then we just need to delete the attached policies.
+   But if the policies are inherited from the group to which the user belongs to, then we need to delete that policy from the group itself but in that case
+   we must keep in mind that the removing the policies from the group can affect the other users in that group.
+
+
+6. Can a single IAM user be a part of multiple policy via group and root? how?
+=> Yes, Suppose there is a scenario where we need to create an IAM user for a management level persion of the organization, so he must have the administrator access
+   as well as he wants access to some of AWS resources like EC2.
+   Now we have two groups defined in IAM i.e admins & developer where admin group is having policy as FullAdministratorAccess and developer group is having policy as FullEC2 access.
+   In this case if we want to create the IAM user for above mentioned scenario so we must need to add the user to both the groups i.e in admin as well as in developers group so evenetually
+   bothe the policies from respective groups will be inherited and will be attached to the user so he will end up having admistrator access as well as EC2 access.
